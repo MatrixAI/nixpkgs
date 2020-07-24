@@ -1504,6 +1504,8 @@ in {
 
   pyvoro = callPackage ../development/python-modules/pyvoro { };
 
+  radish-bdd = callPackage ../development/python-modules/radish-bdd { };
+
   relatorio = callPackage ../development/python-modules/relatorio { };
 
   reproject = callPackage ../development/python-modules/reproject { };
@@ -1642,6 +1644,8 @@ in {
   } else callPackage ../development/python-modules/tables/3.5.nix {
     hdf5 = pkgs.hdf5.override { zlib = pkgs.zlib; };
   };
+
+  tag-expressions = callPackage ../development/python-modules/tag-expressions { };
 
   tableaudocumentapi = callPackage ../development/python-modules/tableaudocumentapi { };
 
@@ -2072,6 +2076,10 @@ in {
 
   chevron = callPackage ../development/python-modules/chevron {};
 
+  ci-info = callPackage ../development/python-modules/ci-info { };
+
+  ci-py = callPackage ../development/python-modules/ci-py { };
+
   cli-helpers = callPackage ../development/python-modules/cli-helpers {};
 
   cmarkgfm = callPackage ../development/python-modules/cmarkgfm { };
@@ -2087,6 +2095,8 @@ in {
   coloredlogs = callPackage ../development/python-modules/coloredlogs { };
 
   colorclass = callPackage ../development/python-modules/colorclass {};
+
+  colorful = callPackage ../development/python-modules/colorful {};
 
   colorlog = callPackage ../development/python-modules/colorlog { };
 
@@ -2306,6 +2316,8 @@ in {
   chart-studio = callPackage ../development/python-modules/chart-studio { };
 
   cheetah = callPackage ../development/python-modules/cheetah { };
+
+  cheetah3 = callPackage ../development/python-modules/cheetah3 { };
 
   cherrypy = if isPy3k then
     callPackage ../development/python-modules/cherrypy { }
@@ -2537,6 +2549,8 @@ in {
   pyjks = callPackage ../development/python-modules/pyjks {};
 
   PyLD = callPackage ../development/python-modules/PyLD { };
+
+  pysingleton = callPackage ../development/python-modules/pysingleton { };
 
   python-jose = callPackage ../development/python-modules/python-jose {};
 
@@ -3992,10 +4006,10 @@ in {
 
   folium = callPackage ../development/python-modules/folium { };
 
-  fontforge = toPythonModule (pkgs.fontforge.override {
+  fontforge = disabledIf (!isPy3k) (toPythonModule (pkgs.fontforge.override {
     withPython = true;
     inherit python;
-  });
+  }));
 
   fonttools = callPackage ../development/python-modules/fonttools { };
 
