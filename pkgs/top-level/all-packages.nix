@@ -7561,6 +7561,8 @@ in
 
   verilog = callPackage ../applications/science/electronics/verilog {};
 
+  vhd2vl = callPackage ../applications/science/electronics/vhd2vl { };
+
   video2midi = callPackage ../tools/audio/video2midi {
     pythonPackages = python3Packages;
   };
@@ -11392,6 +11394,8 @@ in
 
   strace = callPackage ../development/tools/misc/strace { };
 
+  summon = callPackage ../development/tools/summon { };
+
   swarm = callPackage ../development/tools/analysis/swarm { };
 
   swiftformat = callPackage ../development/tools/swiftformat { };
@@ -11994,6 +11998,8 @@ in
   docopt_cpp = callPackage ../development/libraries/docopt_cpp { };
 
   dotconf = callPackage ../development/libraries/dotconf { };
+
+  draco = callPackage ../development/libraries/draco { };
 
   # Multi-arch "drivers" which we want to build for i686.
   driversi686Linux = recurseIntoAttrs {
@@ -23374,6 +23380,8 @@ in
   virtinst = callPackage ../applications/virtualization/virtinst {};
 
   virtscreen = callPackage ../tools/admin/virtscreen {};
+
+  virtual-ans = callPackage ../applications/audio/virtual-ans {};
 
   virtualbox = libsForQt5.callPackage ../applications/virtualization/virtualbox {
     stdenv = stdenv_32bit;
