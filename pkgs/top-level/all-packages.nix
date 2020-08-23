@@ -1486,8 +1486,12 @@ in
     '';
   });
 
-  caddy = callPackage ../servers/caddy { };
-  caddy2 = callPackage ../servers/caddy/v2.nix { };
+  caddy = callPackage ../servers/caddy {
+    buildGoModule = buildGo114Module;
+  };
+  caddy2 = callPackage ../servers/caddy/v2.nix {
+    buildGoModule = buildGo114Module;
+  };
   traefik = callPackage ../servers/traefik { };
 
   calamares = libsForQt5.callPackage ../tools/misc/calamares {
@@ -7065,8 +7069,6 @@ in
   super = callPackage ../tools/security/super { };
 
   supertux-editor = callPackage ../applications/editors/supertux-editor { };
-
-  super-user-spark = haskellPackages.callPackage ../applications/misc/super_user_spark { };
 
   svgbob = callPackage ../tools/graphics/svgbob { };
 
@@ -22983,7 +22985,9 @@ in
   # this can be changed to python3 once pyside2 is updated to support the latest python version
   syncplay = python37.pkgs.callPackage ../applications/networking/syncplay { };
 
-  inherit (callPackages ../applications/networking/syncthing { })
+  inherit (callPackages ../applications/networking/syncthing {
+    buildGoModule = buildGo114Module;
+  })
     syncthing
     syncthing-cli
     syncthing-discovery
@@ -25823,11 +25827,11 @@ in
   ifstat-legacy = callPackage ../tools/networking/ifstat-legacy { };
 
   isabelle = callPackage ../applications/science/logic/isabelle {
-    polyml = stdenv.lib.overrideDerivation polyml57 (attrs: {
+    polyml = stdenv.lib.overrideDerivation polyml (attrs: {
       configureFlags = [ "--enable-intinf-as-int" "--with-gmp" "--disable-shared" ];
     });
 
-    java = if stdenv.isLinux then jre else jdk;
+    java = openjdk11;
   };
 
   iprover = callPackage ../applications/science/logic/iprover { };

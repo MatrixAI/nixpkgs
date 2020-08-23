@@ -79,15 +79,13 @@ in
   docker = handleTestOn ["x86_64-linux"] ./docker.nix {};
   oci-containers = handleTestOn ["x86_64-linux"] ./oci-containers.nix {};
   docker-edge = handleTestOn ["x86_64-linux"] ./docker-edge.nix {};
-  docker-preloader = handleTestOn ["x86_64-linux"] ./docker-preloader.nix {};
   docker-registry = handleTest ./docker-registry.nix {};
   docker-tools = handleTestOn ["x86_64-linux"] ./docker-tools.nix {};
   docker-tools-overlay = handleTestOn ["x86_64-linux"] ./docker-tools-overlay.nix {};
   documize = handleTest ./documize.nix {};
   dokuwiki = handleTest ./dokuwiki.nix {};
   dovecot = handleTest ./dovecot.nix {};
-  # ec2-config doesn't work in a sandbox as the simulated ec2 instance needs network access
-  #ec2-config = (handleTestOn ["x86_64-linux"] ./ec2.nix {}).boot-ec2-config or {};
+  ec2-config = (handleTestOn ["x86_64-linux"] ./ec2.nix {}).boot-ec2-config or {};
   ec2-nixops = (handleTestOn ["x86_64-linux"] ./ec2.nix {}).boot-ec2-nixops or {};
   ecryptfs = handleTest ./ecryptfs.nix {};
   ejabberd = handleTest ./xmpp/ejabberd.nix {};
